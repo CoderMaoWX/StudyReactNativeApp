@@ -16,10 +16,10 @@ import {
   TabBarBottom
 } from 'react-navigation';
 
-let HomeScreen = require('../Home/OKHome');
-let ShopScreen = require('../Shop/OKShop');
-let MoreScreen = require('../More/OKMore');
-let MineScreen = require('../Mine/OKMine');
+import HomeScreen from '../Home/OKHome';
+import ShopScreen from '../Shop/OKShop';
+import MoreScreen from '../More/OKMore';
+import MineScreen from '../Mine/OKMine';
 
 export default class OKMain extends Component {
 
@@ -35,6 +35,8 @@ export default class OKMain extends Component {
   }
 }
 
+// TabNavigator，StackNavigator 的学习地址：
+// http://blog.csdn.net/u013718120/article/details/72357698
 const Tab = TabNavigator(
     {
       Home:{
@@ -54,7 +56,7 @@ const Tab = TabNavigator(
       },
 
       Shop:{
-        screen:HomeScreen,
+        screen:ShopScreen,
         navigationOptions:({navigation}) => ({
           tabBarLabel:'商家',
           title:'商家',
@@ -70,7 +72,7 @@ const Tab = TabNavigator(
       },
 
       More:{
-        screen:HomeScreen,
+        screen:MoreScreen,
         navigationOptions:({navigation}) => ({
           tabBarLabel:'更多',
           title:'更多',
@@ -86,7 +88,7 @@ const Tab = TabNavigator(
       },
 
       Mine:{
-        screen:HomeScreen,
+        screen:MineScreen,
         navigationOptions:({navigation}) => ({
           tabBarLabel:'我的',
           title:'我的',
@@ -105,7 +107,7 @@ const Tab = TabNavigator(
     {
       tabBarComponent:TabBarBottom,
       tabBarPosition:'bottom',
-      swipeEnabled:false,
+      swipeEnabled:true,
       animationEnabled:false,
       lazy:true,
       tabBarOptions:{

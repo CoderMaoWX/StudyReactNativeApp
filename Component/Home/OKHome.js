@@ -6,10 +6,10 @@
 
 import React, { Component } from 'react';
 import {
-  Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  Platform
 } from 'react-native';
 
 const instructions = Platform.select({
@@ -19,11 +19,17 @@ const instructions = Platform.select({
   'Shake or press menu button for dev menu',
 });
 
-export default class OKHome extends Component<{}> {
+export default class OKHome extends Component {
+
+  onTouchAction = () => {
+    alert("测试一下");
+
+  };
+
   render() {
     return (
         <View style={styles.container}>
-          <Text style={styles.welcome}>
+          <Text style={styles.welcome} onPress={this.onTouchAction}>
             Welcome to React Native!
           </Text>
           <Text style={styles.instructions}>
@@ -55,7 +61,3 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 });
-
-
-// 输出类
-module.exports = OKHome;
