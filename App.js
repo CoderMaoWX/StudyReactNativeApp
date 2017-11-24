@@ -5,7 +5,6 @@
  */
 
 import React, { Component } from 'react';
-
 import MainTabBar from './Component/Main/OKMain';
 
 export default class App extends Component {
@@ -15,3 +14,4 @@ export default class App extends Component {
     );
   }
 }
+

@@ -4,60 +4,145 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+import React, { Component, PureComponent } from 'react';
 import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
+  StatusBar,
+  Image,
 } from 'react-native';
 
-import TabNavigator from 'react-native-tab-navigator';
+import {
+  StackNavigator,
+  TabNavigator,
+  TabBarBottom
+} from 'react-navigation';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-  'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-  'Shake or press menu button for dev menu',
-});
+let HomeScreen = require('../Home/OKHome');
+let ShopScreen = require('../Shop/OKShop');
+let MoreScreen = require('../More/OKMore');
+let MineScreen = require('../Mine/OKMine');
 
-export default class OKMain extends Component<{}> {
+export default class OKMain extends Component {
+
+  constructor() {
+    super();
+    StatusBar.setBarStyle('dark-content')
+  }
+
   render() {
+    return(
+        <Navigator />
+    )
+  }
+}
+
+const Tab = TabNavigator(
+    {
+      Home:{
+        screen:HomeScreen,
+        navigationOptions:({navigation}) => ({
+          tabBarLabel:'首页',
+          title:'首页',
+          tabBarIcon:({focused,tintColor}) => (
+              <TabBarItem
+                  tintColor={tintColor}
+                  focused={focused}
+                  normalImage={{uri:('icon_tabbar_homepage')}}
+                  selectedImage={{uri:('icon_tabbar_homepage')}}
+              />
+          )
+        }),
+      },
+
+      Shop:{
+        screen:HomeScreen,
+        navigationOptions:({navigation}) => ({
+          tabBarLabel:'商家',
+          title:'商家',
+          tabBarIcon:({focused,tintColor}) => (
+              <TabBarItem
+                  tintColor={tintColor}
+                  focused={focused}
+                  normalImage={{uri:('icon_tabbar_merchant_normal.png')}}
+                  selectedImage={{uri:('icon_tabbar_merchant_selected.png')}}
+              />
+          )
+        }),
+      },
+
+      More:{
+        screen:HomeScreen,
+        navigationOptions:({navigation}) => ({
+          tabBarLabel:'更多',
+          title:'更多',
+          tabBarIcon:({focused,tintColor}) => (
+              <TabBarItem
+                  tintColor={tintColor}
+                  focused={focused}
+                  normalImage={{uri:('icon_tabbar_misc.png')}}
+                  selectedImage={{uri:('icon_tabbar_misc_selected.png')}}
+              />
+          )
+        }),
+      },
+
+      Mine:{
+        screen:HomeScreen,
+        navigationOptions:({navigation}) => ({
+          tabBarLabel:'我的',
+          title:'我的',
+          tabBarIcon:({focused,tintColor}) => (
+              <TabBarItem
+                  tintColor={tintColor}
+                  focused={focused}
+                  normalImage={{uri:('icon_tabbar_mine.png')}}
+                  selectedImage={{uri:('icon_tabbar_mine_selected.png')}}
+              />
+          )
+        }),
+      },
+    },
+
+    {
+      tabBarComponent:TabBarBottom,
+      tabBarPosition:'bottom',
+      swipeEnabled:false,
+      animationEnabled:false,
+      lazy:true,
+      tabBarOptions:{
+        activeTintColor:'#06C1AE',
+        inactiveTintColor:'#979797',
+        style:{backgroundColor:'#ffffff',},
+        labelStyle: {fontSize:10},
+      }
+    }
+);
+
+// create a component
+class TabBarItem extends PureComponent {
+  render() {
+    let selectedImage = this.props.selectedImage ? this.props.selectedImage : this.props.normalImage
     return (
-        <View style={styles.container}>
-          <Text style={styles.welcome}>
-            Welcome to React Native!
-          </Text>
-          <Text style={styles.instructions}>
-            To get started, edit App.js
-          </Text>
-          <Text style={styles.instructions}>
-            {instructions}
-          </Text>
-        </View>
+        <Image
+            source={this.props.focused ? selectedImage : this.props.normalImage}
+            style={{ tintColor: this.props.tintColor, width: 25, height: 25 }}
+        />
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+const Navigator = StackNavigator(
+    {
+      Tab:{screen:Tab},
+      // Product:{screen:ProductScreen}
+    },
 
-
-// 输出类
-module.exports = OKMain;
+    {
+      navigationOptions:{
+        headerBackTitle:null,
+        headerTintColor:'#333333',
+        showIcon:true,
+        swipeEnabled:false,
+        animationEnabled:false,
+      },
+    }
+);

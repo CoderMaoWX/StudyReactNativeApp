@@ -55,3 +55,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 });
+
+
+// 输出类
+module.exports = OKHome;
