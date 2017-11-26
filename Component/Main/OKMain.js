@@ -42,14 +42,14 @@ const Tab = TabNavigator(
       Home:{
         screen:HomeScreen,
         navigationOptions:({navigation}) => ({
-          tabBarLabel:'首页',
-          title:'首页',
+          tabBarLabel:'团购',
+          title:'团购',
           tabBarIcon:({focused,tintColor}) => (
               <TabBarItem
                   tintColor={tintColor}
                   focused={focused}
-                  normalImage={{uri:('icon_tabbar_homepage')}}
-                  selectedImage={{uri:('icon_tabbar_homepage')}}
+                  normalImage={{uri:('pfb_tabbar_homepage')}}
+                  selectedImage={{uri:('pfb_tabbar_homepage_selected')}}
               />
           )
         }),
@@ -58,14 +58,14 @@ const Tab = TabNavigator(
       Shop:{
         screen:ShopScreen,
         navigationOptions:({navigation}) => ({
-          tabBarLabel:'商家',
-          title:'商家',
+          tabBarLabel:'附近',
+          title:'附近',
           tabBarIcon:({focused,tintColor}) => (
               <TabBarItem
                   tintColor={tintColor}
                   focused={focused}
-                  normalImage={{uri:('icon_tabbar_merchant_normal.png')}}
-                  selectedImage={{uri:('icon_tabbar_merchant_selected.png')}}
+                  normalImage={{uri:('pfb_tabbar_merchant')}}
+                  selectedImage={{uri:('pfb_tabbar_merchant_selected')}}
               />
           )
         }),
@@ -74,14 +74,14 @@ const Tab = TabNavigator(
       More:{
         screen:MoreScreen,
         navigationOptions:({navigation}) => ({
-          tabBarLabel:'更多',
-          title:'更多',
+          tabBarLabel:'订单',
+          title:'订单',
           tabBarIcon:({focused,tintColor}) => (
               <TabBarItem
                   tintColor={tintColor}
                   focused={focused}
-                  normalImage={{uri:('icon_tabbar_misc.png')}}
-                  selectedImage={{uri:('icon_tabbar_misc_selected.png')}}
+                  normalImage={{uri:('pfb_tabbar_order')}}
+                  selectedImage={{uri:('pfb_tabbar_order_selected')}}
               />
           )
         }),
@@ -96,8 +96,8 @@ const Tab = TabNavigator(
               <TabBarItem
                   tintColor={tintColor}
                   focused={focused}
-                  normalImage={{uri:('icon_tabbar_mine.png')}}
-                  selectedImage={{uri:('icon_tabbar_mine_selected.png')}}
+                  normalImage={{uri:('pfb_tabbar_mine')}}
+                  selectedImage={{uri:('pfb_tabbar_mine_selected')}}
               />
           )
         }),

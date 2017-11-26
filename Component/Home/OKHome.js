@@ -9,6 +9,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Image,
   Platform
 } from 'react-native';
 
@@ -38,6 +39,8 @@ export default class OKHome extends Component {
           <Text style={styles.instructions}>
             {instructions}
           </Text>
+
+          <Image style={{width:50, height:50, backgroundColor:'red'}} source={{uri:'wine'}} />
         </View>
     );
   }
