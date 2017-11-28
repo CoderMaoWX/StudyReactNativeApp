@@ -21,6 +21,9 @@ import ShopScreen from '../Order/MTOrder';
 import MoreScreen from '../Nearby/MTNearby';
 import MineScreen from '../Mine/MTMine';
 
+//商品详情页面
+import ProductDetail from '../Buy/MTProductDetail';
+
 export default class OKMain extends Component {
 
   constructor() {
@@ -122,7 +125,7 @@ const Tab = TabNavigator(
 const Navigator = StackNavigator(
     {
       Tab:{screen:Tab},
-      detail:{screen: MineScreen}
+      productDetail:{screen: ProductDetail}
     },
 
     {

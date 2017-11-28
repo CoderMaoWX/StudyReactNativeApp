@@ -4,6 +4,8 @@
 import MTGlobalColor from './MTGlobalColor';
 import MTGlobalFrame from './MTGlobalFrame';
 import MTGlobalText from './MTGlobalText';
+import MTApi from './MTApi';
+
 import MTNavigationItem from '../../Component/Widget/MTNavigationItem';
 
 
