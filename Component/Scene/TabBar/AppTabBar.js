@@ -16,10 +16,10 @@ import {
   TabBarBottom
 } from 'react-navigation';
 
-import HomeScreen from '../Home/OKHome';
-import ShopScreen from '../Shop/OKShop';
-import MoreScreen from '../More/OKMore';
-import MineScreen from '../Mine/OKMine';
+import HomeScreen from '../Buy/MTGroupBuy';
+import ShopScreen from '../Order/MTOrder';
+import MoreScreen from '../Nearby/MTNearby';
+import MineScreen from '../Mine/MTMine';
 
 export default class OKMain extends Component {
 

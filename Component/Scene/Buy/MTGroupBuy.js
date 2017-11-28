@@ -16,7 +16,7 @@ import {
 export default class OKHome extends Component {
 
   static navigationOptions = ({ navigation }) => ({
-    headerStyle: {backgroundColor: global.mainTheme.theme},
+    headerStyle: {backgroundColor: MTColor.theme},
     headerTitle: (
       <TouchableOpacity style={styles.searchBarStyle}>
         <Image source={{uri:'search_icon'}} style={styles.searchIconStyle}/>
@@ -26,20 +26,20 @@ export default class OKHome extends Component {
     // headerRight: (
     //
     // ),
-
   });
-
 
   onTouchAction = () =>{
     // alert("测试一下");
     this.props.navigation.navigate('detail');
   };
 
-
   render() {
     return (
         <View style={styles.container}>
-          <Image style={{width:50, height:50, backgroundColor:'red'}} source={{uri:'weixin'}} />
+          {/*<Image style={{width:50, height:50, backgroundColor:'red'}} source={{uri:'weixin'}} />*/}
+          <Text style={styles.welcome}>
+            {MTText.AppName}
+          </Text>
         </View>
     );
   }
@@ -47,7 +47,7 @@ export default class OKHome extends Component {
 
 const styles = StyleSheet.create({
   searchBarStyle: {
-    width: global.constants.width * 0.7,
+    width: MTFrame.width * 0.7,
     height: 30,
     borderRadius: 19,
     flexDirection: 'row',
@@ -63,20 +63,16 @@ const styles = StyleSheet.create({
     margin: 5,
   },
 
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
   welcome: {
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
   },
 });

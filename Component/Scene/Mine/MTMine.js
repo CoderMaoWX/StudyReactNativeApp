@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 
 
-import MineScreent from '../Mine/OKMine'
+import MineScreent from './MTMine'
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -26,7 +26,7 @@ const instructions = Platform.select({
 export default class OKMine extends Component {
 
   static navigationOptions = ({ navigation }) => ({
-    headerTitle: '详情',
+    headerTitle: '我的',
     headerStyle: { backgroundColor: 'white' },
 
   });

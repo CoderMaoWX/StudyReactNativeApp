@@ -5,7 +5,7 @@
  */
 
 import React, { Component } from 'react';
-import MainTabBar from './Component/Main/OKMain';
+import MainTabBar from './Component/Scene/TabBar/AppTabBar';
 
 export default class App extends Component {
   render() {
