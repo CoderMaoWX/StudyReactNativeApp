@@ -17,8 +17,8 @@ import {
 } from 'react-navigation';
 
 import HomeScreen from '../Buy/MTGroupBuy';
-import ShopScreen from '../Order/MTOrder';
-import MoreScreen from '../Nearby/MTNearby';
+import OrderScreen from '../Order/MTOrder';
+import NearbyScreen from '../Nearby/MTNearby';
 import MineScreen from '../Mine/MTMine';
 
 //商品详情页面
@@ -59,7 +59,7 @@ const Tab = TabNavigator(
       },
 
       Shop:{
-        screen:ShopScreen,
+        screen:NearbyScreen,
         navigationOptions:({navigation}) => ({
           tabBarLabel:'附近',
           title:'附近',
@@ -75,7 +75,7 @@ const Tab = TabNavigator(
       },
 
       More:{
-        screen:MoreScreen,
+        screen:OrderScreen,
         navigationOptions:({navigation}) => ({
           tabBarLabel:'订单',
           title:'订单',

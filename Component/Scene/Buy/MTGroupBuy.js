@@ -48,25 +48,15 @@ export default class OKHome extends Component {
   };
 
   separator = () => {
-    return <View style={{height:1,backgroundColor:'#999999'}}/>;
+    return <View style={{height:0.5, backgroundColor:'#e2e2e2'}}/>;
   };
 
-  keyExtractor = (item: Object, index: number) => {
+  keyExtractor = (item: Object) => {
     return item.id
   };
 
-  renderItemView = (item) => {
-    return (
-        <TouchableOpacity style={styles.cellStyle} >
-
-          <Image style={styles.picStyle} source={{uri: item.imageUrl.replace('w.h', '160.0')}} />
-          <View style={styles.rightContainer}>
-            <Text style={styles.titleStyle}> {item.title} </Text>
-            <Text style={styles.descStyle}> {item.subtitle} </Text>
-            <Text style={styles.priceStyle}> {item.price} </Text>
-          </View>
-        </TouchableOpacity>
-    );
+  renderItemView ({item}) {
+    return <MTProductCell info={item} onPress={() => {this.rightItemAction}} />
   };
 
   constructor(props){
@@ -79,14 +69,14 @@ export default class OKHome extends Component {
 
   render() {
     return (
-        <FlatList style={styles.listViewStyle}>
+        <FlatList style={styles.listViewStyle}
             data={this.state.dataList}
             keyExtractor={this.keyExtractor}
             renderItem={this.renderItemView}
             onRefresh={this.requestListData.bind(this)}
             refreshing={this.state.refreshing}
             ItemSeparatorComponent={this.separator}
-         </FlatList>
+         />
     );
   }
 
@@ -158,42 +148,4 @@ const styles = StyleSheet.create({
     color: '#777777',
     fontSize:12,
   },
-
-
-
-  cellStyle:{
-    flex:1,
-    flexDirection:'row',
-    alignItems: 'center',
-    backgroundColor: 'red',
-  },
-
-  picStyle:{
-    width: 60,
-    height: 60,
-    margin: 5,
-  },
-
-  rightContainer:{
-    flex:1,
-    flexDirection:'column',
-    justifyContent:'flex-start',
-    margin: 5,
-  },
-
-  titleStyle:{
-    fontSize: 15,
-    marginBottom: 10,
-  },
-
-  descStyle:{
-    fontSize: 15,
-    marginBottom: 10,
-  },
-
-  priceStyle:{
-    fontSize: 15,
-    marginBottom: 10,
-  },
-
 });
