@@ -15,7 +15,10 @@ import {
 } from 'react-native';
 
 import MTNavigationItem from '../../Widget/MTNavigationItem'
-import MTProductCell from '../../Widget/MTProductCell'
+import MTProductCell from './MTProductCell'
+import MTHomeMenuView from './MTHomeMenuView'
+import MTSpacingView from '../../Widget/MTSpacingView'
+import MTHomeGridView from './MTHomeGridView'
 
 export default class OKHome extends Component {
 
@@ -43,8 +46,8 @@ export default class OKHome extends Component {
     ),
   });
 
-  rightItemAction = () => {
-    this.props.navigation.navigate('productDetail');
+  rightItemAction = (info: Object) => {
+    this.props.navigation.navigate('productDetail', { info: info });
   };
 
   separator = () => {
@@ -52,17 +55,31 @@ export default class OKHome extends Component {
   };
 
   keyExtractor = (item: Object) => {
-    return item.id
+    return item.key
   };
 
   renderItemView ({item}) {
-    return <MTProductCell info={item} onPress={() => {this.rightItemAction}} />
+    return <MTProductCell info={item} onPress={this.rightItemAction} />
+  };
+
+  renderHeaderView ({info}) {
+    return (
+        <View>
+          <MTHomeMenuView menuInfos={MTApi.menuInfo} onPress={this.rightItemAction}/>
+          <MTSpacingView />
+          {/*广告*/}
+          <MTHomeGridView infos={this.state.discounts} onPress={this.rightItemAction} />
+          <MTSpacingView />
+          <Text style={{ backgroundColor:'white', borderColor:'#e2e2e2', borderWidth:1, lineHeight:30, color:'#222222'}} >     猜你喜欢 </Text>
+        </View>
+    )
   };
 
   constructor(props){
     super(props);
     this.state = {
       dataList: [],
+      discounts: [],
       refreshing: false,
     }
   }
@@ -72,9 +89,10 @@ export default class OKHome extends Component {
         <FlatList style={styles.listViewStyle}
             data={this.state.dataList}
             keyExtractor={this.keyExtractor}
-            renderItem={this.renderItemView}
+            renderItem={this.renderItemView.bind(this)}
             onRefresh={this.requestListData.bind(this)}
             refreshing={this.state.refreshing}
+            ListHeaderComponent={this.renderHeaderView.bind(this)}
             ItemSeparatorComponent={this.separator}
          />
     );
@@ -82,28 +100,47 @@ export default class OKHome extends Component {
 
   componentDidMount(){
     this.props.navigation.setParams({navigatePress:this.rightItemAction});
+    this.setState({ refreshing: true });
     this.requestListData();
+    this.requestGridData();
   }
 
-  async requestListData () {
-    this.setState({ refreshing: true });
+  //请求头部广告数据
+  requestGridData() {
 
-    //这个是js的访问网络的方法
+    fetch(MTApi.discount)
+        .then((response) => response.json())
+        .then((responseData) => {
+          this.setState({
+            discounts: responseData.data
+          })
+        }) .catch((error) => {
+      this.setState({
+        refreshing: false
+      })
+    }) .done();
+  }
+
+  //请求列表数据
+  async requestListData () {
+
     fetch(MTApi.recommend)
-    //ES6的写法左边代表输入的参数右边是逻辑处理和返回结果
         .then((response) => response.json())
         .then((responseData) => {
           let data = responseData.data;
           let dataBlob = [];
+          let index = 0;
 
           data.map(function (info) {
             dataBlob.push({
+              key:index,
               id: info.id,
               imageUrl: info.squareimgurl,
-              title: info.mndataListame,
+              title: info.mname,
               subtitle: `[${info.range}]${info.title}`,
               price: info.price
             });
+            index++;
           });
 
           this.setState({

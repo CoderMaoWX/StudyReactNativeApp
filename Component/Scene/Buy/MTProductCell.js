@@ -1,5 +1,5 @@
 
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import {
   StyleSheet,
   Text,
@@ -8,26 +8,19 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-export default class MTProductCell extends Component {
-
-  buttonAction = () => {
-    //解构
-    const { onPress } = this.props;
-    //自定义的方法,使用属性来定义
-    onPress();
-  };
+export default class MTProductCell extends PureComponent {
 
   render(){
     let { info } = this.props;
     let imageUrl = info.imageUrl.replace('w.h', '160.0');
     return (
-        <TouchableOpacity style={styles.container} onPress={this.buttonAction} >
+        <TouchableOpacity style={styles.container} onPress={() => {this.props.onPress(info)}} >
 
           <Image style={styles.picStyle} source={{uri: imageUrl}} />
           <View style={styles.rightContainer}>
             <Text style={styles.titleStyle}> {info.title} </Text>
             <Text style={styles.descStyle}> {info.subtitle} </Text>
-            <Text style={styles.priceStyle}> {info.price} </Text>
+            <Text style={styles.priceStyle}> ¥{info.price} </Text>
           </View>
 
         </TouchableOpacity>
@@ -57,18 +50,21 @@ const styles = StyleSheet.create({
   },
 
   titleStyle:{
-    fontSize: 15,
-    marginBottom: 10,
+    fontSize: 14,
+    marginTop: 8,
+    marginBottom: 5,
   },
 
   descStyle:{
-    fontSize: 15,
-    marginBottom: 10,
+    color: 'gray',
+    fontSize: 12,
+    marginBottom: 8,
   },
 
   priceStyle:{
-    fontSize: 15,
-    marginBottom: 10,
+    color: MTColor.theme,
+    fontSize: 14,
+    marginBottom: 8,
   },
 
 });
