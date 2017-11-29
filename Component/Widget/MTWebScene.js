@@ -14,7 +14,7 @@ import { View, Text, StyleSheet, WebView, InteractionManager } from 'react-nativ
 class WebScene extends PureComponent {
 
     static navigationOptions = ({ navigation }) => ({
-        headerStyle: { backgroundColor: 'white' },
+        headerStyle: { backgroundColor: MTColor.theme },
         title: navigation.state.params.title,
     });
 
@@ -23,7 +23,7 @@ class WebScene extends PureComponent {
     }
 
     constructor(props: Object) {
-        super(props)
+        super(props);
         this.state = {
             source: {}
         }

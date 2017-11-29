@@ -8,24 +8,35 @@ class HomeGridView extends PureComponent {
 
   static defaultProps = {
     infos: []
-  }
+  };
+
+  renderItemView = () => {
+    let itemViewArr = [];
+    let infoItemArr = this.props.infos;
+
+    for (let i=0; i<infoItemArr.length; i++) {
+      let info = infoItemArr[i];
+      let imageUrl = info.imageurl.replace('w.h', '400.0');
+
+      itemViewArr.push(
+        <TouchableOpacity key={info.title} style={styles.menuButtonStyle} onPress={() =>this.props.onPress(info.share.url)}>
+
+          <View style={{flexDirection:'column'}}>
+            <Text style={{fontSize:12, color:info.deputy_typeface_color, marginBottom:10}}> {info.title} </Text>
+            <Text style={{fontSize:12, color:'#222222'}}> {info.deputytitle} </Text>
+          </View>
+
+          <Image source={{ uri: imageUrl }} style={styles.itemImgStyle}/>
+        </TouchableOpacity>
+      )
+    }
+    return itemViewArr;
+  };
 
   render() {
     return (
         <View style={styles.container}>
-          {this.props.infos.map((info, index) => (
-
-              <TouchableOpacity key={info.title} style={styles.menuButtonStyle} onPress={() =>this.props.onPress(info.share.url)}>
-
-                <View style={{flexDirection:'column'}}>
-                  <Text style={{fontSize:12, color:info.deputy_typeface_color, marginBottom:10}}> {info.title} </Text>
-                  <Text style={{fontSize:12, color:'#222222'}}> {info.deputytitle} </Text>
-                </View>
-
-                <Image source={{uri: info.imageurl}} style={styles.itemImgStyle}/>
-
-              </TouchableOpacity>
-          ))}
+          {this.renderItemView.bind(this)()}
         </View>
     );
   }
@@ -55,12 +66,12 @@ const styles = StyleSheet.create({
     borderWidth:0.5,
   },
   itemImgStyle:{
-    backgroundColor:'red',
-    width: 45,
-    height: 45,
-    margin: 5,
-    borderRadius: 22.5,
-    overflow: 'hidden'
+    backgroundColor:'white',
+    width: MTFrame.width/5,
+    height: MTFrame.width/5,
+    margin: 15,
+    // borderRadius: 22.5,
+    // overflow: 'hidden'
   },
 });
 
