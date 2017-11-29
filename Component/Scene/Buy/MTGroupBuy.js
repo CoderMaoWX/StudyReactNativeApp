@@ -50,6 +50,10 @@ export default class OKHome extends Component {
     this.props.navigation.navigate('productDetail', { info: info });
   };
 
+  gotoWebViewAction = (url) => {
+    this.props.navigation.navigate('Web', { url: url  });
+  };
+
   separator = () => {
     return <View style={{height:0.5, backgroundColor:'#e2e2e2'}}/>;
   };
@@ -68,7 +72,7 @@ export default class OKHome extends Component {
           <MTHomeMenuView menuInfos={MTApi.menuInfo} onPress={this.rightItemAction}/>
           <MTSpacingView />
           {/*广告*/}
-          <MTHomeGridView infos={this.state.discounts} onPress={this.rightItemAction} />
+          <MTHomeGridView infos={this.state.discounts} onPress={this.gotoWebViewAction} />
           <MTSpacingView />
           <Text style={{ backgroundColor:'white', borderColor:'#e2e2e2', borderWidth:1, lineHeight:30, color:'#222222'}} >     猜你喜欢 </Text>
         </View>

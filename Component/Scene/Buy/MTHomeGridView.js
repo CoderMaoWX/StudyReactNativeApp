@@ -15,7 +15,7 @@ class HomeGridView extends PureComponent {
         <View style={styles.container}>
           {this.props.infos.map((info, index) => (
 
-              <TouchableOpacity key={info.title} style={styles.menuButtonStyle} onPress={() =>this.props.onPress(info)}>
+              <TouchableOpacity key={info.title} style={styles.menuButtonStyle} onPress={() =>this.props.onPress(info.share.url)}>
 
                 <View style={{flexDirection:'column'}}>
                   <Text style={{fontSize:12, color:info.deputy_typeface_color, marginBottom:10}}> {info.title} </Text>

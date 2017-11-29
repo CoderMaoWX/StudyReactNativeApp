@@ -23,6 +23,7 @@ import MineScreen from '../Mine/MTMine';
 
 //商品详情页面
 import ProductDetail from '../Buy/MTProductDetail';
+import Web from '../../Widget/MTWebScene';
 
 export default class OKMain extends Component {
 
@@ -125,6 +126,7 @@ const Tab = TabNavigator(
 const Navigator = StackNavigator(
     {
       Tab:{screen:Tab},
+      Web:{screen:Web},
       productDetail:{screen: ProductDetail}
     },
 
