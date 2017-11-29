@@ -81,8 +81,8 @@ export default class OKHome extends Component {
   }
 
   componentDidMount(){
-    this.requestListData();
     this.props.navigation.setParams({navigatePress:this.rightItemAction});
+    this.requestListData();
   }
 
   async requestListData () {
