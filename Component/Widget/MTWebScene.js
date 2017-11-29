@@ -1,12 +1,4 @@
-/**
- * Copyright (c) 2017-present, Liu Jinyong
- * All rights reserved.
- *
- * https://github.com/huanxsd/MeiTuan  
- * @flow
- */
 
-//import liraries
 import React, { PureComponent } from 'react'
 import { View, Text, StyleSheet, WebView, InteractionManager } from 'react-native'
 
@@ -18,10 +10,6 @@ class WebScene extends PureComponent {
         title: navigation.state.params.title,
     });
 
-    state: {
-        source: Object
-    }
-
     constructor(props: Object) {
         super(props);
         this.state = {
@@ -31,7 +19,7 @@ class WebScene extends PureComponent {
 
     componentDidMount() {
         InteractionManager.runAfterInteractions(() => {
-            this.props.navigation.setParams({ title: '加载中' })
+            this.props.navigation.setParams({ title: '加载中' });
             this.setState({ source: { uri: this.props.navigation.state.params.url } })
         })
     }
