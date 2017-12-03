@@ -47,7 +47,7 @@ export default class MTHomeMenuView extends Component {
     let menuItems = menuInfos.map(
         (info, i) => (
             <TouchableOpacity key={info.title} style={styles.menuButtonStyle} onPress={this.itemAction}>
-              <Image source={{uri: info.icon}} style={styles.itemImgStyle}/>
+              <Image source={{uri: info.icon}} style={styles.itemImgStyle} />
               <Text style={{fontSize:14, color:'#222222'}}> {info.title} </Text>
             </TouchableOpacity>
         )
@@ -141,8 +141,13 @@ const styles = StyleSheet.create({
   },
 
   itemImgStyle:{
+    // 设置图片填充模式
+    resizeMode: 'stretch',
+    backgroundColor: '#e2e2e2',
     width: 30,
     height: 30,
+    borderRadius:15,
+    overflow:'hidden',
     margin: 5,
   },
 

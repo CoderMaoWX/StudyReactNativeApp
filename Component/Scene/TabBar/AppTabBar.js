@@ -63,7 +63,7 @@ const Tab = TabNavigator(
         screen:NearbyScreen,
         navigationOptions:({navigation}) => ({
           tabBarLabel:'附近',
-          title:'附近',
+          // title:'附近',
           tabBarIcon:({focused,tintColor}) => (
               <TabBarItem
                   tintColor={tintColor}

@@ -4,7 +4,7 @@ import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 
 // create a component
-class HomeGridView extends PureComponent {
+export default class HomeGridView extends PureComponent {
 
   static defaultProps = {
     infos: []
@@ -74,6 +74,3 @@ const styles = StyleSheet.create({
     // overflow: 'hidden'
   },
 });
-
-//make this component available to the app
-export default HomeGridView;
